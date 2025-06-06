@@ -1,0 +1,15 @@
+<!-- templates/profile.html -->
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Welcome, {{ user.username }}!</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <h5 class="card-title">{{ user.username }}</h5>
+        <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+        <p class="card-text"><strong>Joined:</strong> {{ user.created_at.strftime('%B %d, %Y') }}</p>
+        <!-- Add more user info if available -->
+    </div>
+</div>
+{% endblock %}

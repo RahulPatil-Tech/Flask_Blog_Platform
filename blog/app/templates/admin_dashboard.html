@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<h4 class="mt-4">Users</h4>
+<ul>
+    {% for user in users %}
+    <li>
+        {{ user.username }} ({{ user.role }})
+        {% if user.role != 'admin' %}
+        - <a href="{{ url_for('admin.promote_user', user_id=user.id) }}">Promote to Admin</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+<h4 class="mt-4">All Posts</h4>
+<ul>
+    {% for post in posts %}
+    <li>
+        {{ post.title }} -
+        <form action="{{ url_for('admin.admin_delete_post', post_id=post.id) }}" method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
