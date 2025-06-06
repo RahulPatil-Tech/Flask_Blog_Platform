@@ -1,4 +1,4 @@
-<h1 align="center">📝गोड आठवणी /h1>
+<h1 align="center">📝गोड आठवणी </h1>
 
 <p align="center">
   A secure, modern, and responsive blog application built with <strong>Flask</strong>, <strong>MySQL</strong>, and <strong>Bootstrap</strong> 🌐🛡️  
