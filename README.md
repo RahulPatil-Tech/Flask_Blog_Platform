@@ -139,10 +139,10 @@ Use it freely, modify as needed, and don’t forget to credit!
 
 ## 👨‍💻 Contact
 
-📧 Email: rahul@example.com  
-🌐 [Portfolio](https://your-portfolio-link.com)  
-🐙 [GitHub](https://github.com/yourusername)  
-💼 [LinkedIn](https://linkedin.com/in/yourlinkedin)
+📧 Email: rp3252154@gmail.com  
+🌐 [Portfolio]([https://your-portfolio-link.com](https://github.com/RahulPatil-Tech))  
+🐙 [GitHub]([https://github.com/yourusername](https://github.com/RahulPatil-Tech))  
+💼 [LinkedIn]([https://linkedin.com/in/yourlinkedin](https://www.linkedin.com/in/rahul-patil-4bb533209/))
 
 ---
 
