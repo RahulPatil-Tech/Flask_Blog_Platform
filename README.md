@@ -85,8 +85,10 @@
 
 ## Glims 🖼️
 
-### 📝 All Posts Page (No Posts)
-<img width="1836" height="830" alt="Screenshot From 2025-07-28 19-28-41" src="https://github.com/user-attachments/assets/fb36d273-ce2d-4fbb-8844-98246661eb15" />
+----
+### 🟢 Live User Activity Animation
+[Screencast From 2025-07-28 20-21-21.webm](https://github.com/user-attachments/assets/56a3413b-920a-4527-85fe-f6a7734d5e0b)
+
 
 -----
 ### 🏡 Homepage with Posts
