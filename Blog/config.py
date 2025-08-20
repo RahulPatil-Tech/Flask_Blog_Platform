@@ -1,0 +1,13 @@
+import os
+class Config:
+    SECRET_KEY = 'this-should-be-secret-and-random'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://rp32:Strong%40123@localhost/blog'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    # Flask-Mail settings
+    MAIL_SERVER = "smtp.gmail.com"      
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.getenv("MAIL_USERNAME")
+    MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
+    MAIL_DEFAULT_SENDER = ("FlaskBlog", os.getenv("MAIL_USERNAME"))
