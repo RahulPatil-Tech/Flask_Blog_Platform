@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block title %}Profile - {{ user.username }} - FlaskBlog{% endblock %}
+
+{% block content %}
+<div class="container py-5 animate__animated animate__fadeIn">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <!-- Profile Card -->
+            <div class="card shadow-lg border-0 rounded-4 mb-5 animate__animated animate__fadeInUp">
+                <div class="card-header bg-gradient-primary text-white text-center py-4 rounded-top-4">
+                    <h2 class="mb-0 animate__animated animate__fadeInDown">
+                        <i class="fas fa-user-circle me-2"></i> Welcome, {{ user.username }}!
+                    </h2>
+                    <p class="lead mb-0 mt-2 animate__animated animate__fadeIn">
+                        Your personal space on FlaskBlog.
+                    </p>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3 align-items-center mb-4">
+                        <div class="col-auto">
+                            <i class="fas fa-user fa-2x text-primary"></i>
+                        </div>
+                        <div class="col">
+                            <h5 class="card-title mb-0 fw-bold text-dark">{{ user.username }}</h5>
+                            {% if user.role %}
+                                <span class="badge bg-info text-dark mt-1">{{ user.role.capitalize() }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item d-flex align-items-center px-0">
+                            <i class="fas fa-envelope me-3 text-muted"></i>
+                            <strong class="me-2">Email:</strong>
+                            <span class="text-secondary">{{ user.email }}</span>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center px-0">
+                            <i class="fas fa-calendar-alt me-3 text-muted"></i>
+                            <strong class="me-2">Joined:</strong>
+                            <span class="text-secondary">{{ user.created_at.strftime('%B %d, %Y') }}</span>
+                        </li>
+                        <!-- Add more user info fields here if available in your user model -->
+                        {% if user.bio %} {# Example: if you have a 'bio' field #}
+                        <li class="list-group-item d-flex align-items-start px-0">
+                            <i class="fas fa-info-circle me-3 text-muted mt-1"></i>
+                            <strong class="me-2">Bio:</strong>
+                            <span class="text-secondary">{{ user.bio }}</span>
+                        </li>
+                        {% endif %}
+                    </ul>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4 pt-3 border-top">
+                        <a href="{{ url_for('profile.edit_profile') }}" class="btn btn-outline-primary rounded-pill px-4 py-2 animate__animated animate__pulse animate__infinite-hover me-md-2">
+                            <i class="fas fa-user-edit me-2"></i> Edit Profile
+                        </a>
+                        <a href="{{ url_for('profile.change_password') }}" class="btn btn-outline-secondary rounded-pill px-4 py-2 me-md-2">
+                            <i class="fas fa-lock me-2"></i> Change Password
+                        </a>
+                        <a href="{{ url_for('main.user_posts', username=user.username) }}" class="btn btn-primary rounded-pill px-4 py-2">
+                            <i class="fas fa-newspaper me-2"></i> My Posts
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optional: Section for User's Recent Activity / Posts -->
+            {# You might want to include a section here displaying the user's recent posts or comments.
+               This would typically involve passing the user's posts to the template and looping through them,
+               similar to the home.html page. For brevity, I'll just add a placeholder. #}
+            <div class="card shadow-sm border-0 rounded-4 animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="card-header bg-light text-dark py-3 px-4 rounded-top-4">
+                    <h4 class="mb-0"><i class="fas fa-history me-2 text-primary"></i> Your Recent Activity</h4>
+                </div>
+                <div class="card-body p-4 text-center text-muted">
+                    <p class="mb-0">This section could display your latest posts, comments, or other activities.</p>
+                    <a href="{{ url_for('main.user_posts', username=user.username) }}" class="btn btn-link mt-2">View All My Posts <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Specific styles for profile.html */
+
+    /* Profile Card Header Gradient */
+    .bg-gradient-primary {
+        background: linear-gradient(45deg, #007bff, #0056b3); /* Blue gradient */
+    }
+
+    /* List Group Item Styling */
+    .list-group-item {
+        border-color: rgba(0, 0, 0, 0.08); /* Lighter border for list items */
+        font-size: 1.05rem;
+    }
+
+    .list-group-item:first-child {
+        border-top-width: 0; /* Remove top border for first item in flush list */
+    }
+
+    /* Button Styling */
+    .btn-outline-primary.rounded-pill,
+    .btn-outline-secondary.rounded-pill,
+    .btn-primary.rounded-pill {
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline-primary.rounded-pill:hover,
+    .btn-outline-secondary.rounded-pill:hover,
+    .btn-primary.rounded-pill:hover {
+        transform: translateY(-2px); /* Subtle lift on hover */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Animation for pulse on hover (re-affirming from layout.html or main stylesheet) */
+    .animate__infinite-hover:hover {
+        animation: pulse 1.5s infinite;
+    }
+
+    /* General text colors (re-affirming from layout.html or main stylesheet) */
+    .text-primary { color: #007bff !important; }
+    .text-secondary { color: #6c757d !important; }
+    .text-muted { color: #6c757d !important; }
+    .text-dark { color: #343a40 !important; }
+    .text-info { color: #17a2b8 !important; }
+</style>
+{% endblock %}
