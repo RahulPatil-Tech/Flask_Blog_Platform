@@ -1,7 +1,7 @@
 import os
 class Config:
     SECRET_KEY = 'this-should-be-secret-and-random'
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://rp32:Strong%40123@localhost/blog'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:hNolfQXzqIDgNMJGpcoiQoPHXkxEKiKq@mysql.railway.internal:3306/railway'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Flask-Mail settings
