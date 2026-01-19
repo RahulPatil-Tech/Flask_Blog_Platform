@@ -1,11 +1,21 @@
 import os
+
 class Config:
-    SECRET_KEY = 'this-should-be-secret-and-random'
+    SECRET_KEY = os.getenv("SECRET_KEY", "fallback-secret")
+
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        "pool_pre_ping": True,
+        "pool_recycle": 300,
+        "connect_args": {
+            "ssl": {}
+        }
+    }
+
     # Flask-Mail settings
-    MAIL_SERVER = "smtp.gmail.com"      
+    MAIL_SERVER = "smtp.gmail.com"
     MAIL_PORT = 587
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.getenv("MAIL_USERNAME")
