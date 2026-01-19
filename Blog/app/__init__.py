@@ -2,8 +2,11 @@
 
 from flask import Flask
 from dotenv import load_dotenv
-import os
 from datetime import datetime
+import os
+
+import pymysql
+pymysql.install_as_MySQLdb()
 
 from app.extensions import db, migrate, jwt, login_manager, mail
 from flask_login import current_user
@@ -12,10 +15,11 @@ from app.models.user import User
 
 
 def create_app():
+    # Load environment variables FIRST
     load_dotenv()
 
     app = Flask(__name__)
-    app.config.from_object('config.Config')
+    app.config.from_object("config.Config")
 
     # Initialize extensions
     db.init_app(app)
@@ -23,8 +27,10 @@ def create_app():
     jwt.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
-    login_manager.login_view = 'auth.login' #type:ignore
 
+    login_manager.login_view = "auth.login"  # type: ignore
+
+    # Enable CORS
     CORS(app)
 
     # User loader for Flask-Login
@@ -35,12 +41,12 @@ def create_app():
     # Inject current_user into all templates
     @app.context_processor
     def inject_user():
-        return dict(current_user=current_user)
+        return {"current_user": current_user}
 
     # Inject current UTC time into templates
     @app.context_processor
     def inject_now():
-        return {'now': datetime.utcnow}
+        return {"now": datetime.utcnow}
 
     # Register Blueprints
     from app.routes.auth import auth_bp
@@ -50,11 +56,11 @@ def create_app():
     from app.routes.main import main_bp
     from app.routes.profile import profile_bp
 
-    app.register_blueprint(main_bp, url_prefix='/')
-    app.register_blueprint(auth_bp, url_prefix='/auth')
-    app.register_blueprint(post_bp, url_prefix='/posts')
-    app.register_blueprint(comment_bp, url_prefix='/comment')
-    app.register_blueprint(admin_bp, url_prefix='/admin')
-    app.register_blueprint(profile_bp, url_prefix='/profile')
+    app.register_blueprint(main_bp)
+    app.register_blueprint(auth_bp, url_prefix="/auth")
+    app.register_blueprint(post_bp, url_prefix="/posts")
+    app.register_blueprint(comment_bp, url_prefix="/comment")
+    app.register_blueprint(admin_bp, url_prefix="/admin")
+    app.register_blueprint(profile_bp, url_prefix="/profile")
 
     return app
