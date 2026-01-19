@@ -8,3 +8,4 @@ Flask-JWT-Extended==4.6.0
 Flask-Cors==4.0.0
 cryptography==42.0.5
 gunicorn
+Flask_Mail
